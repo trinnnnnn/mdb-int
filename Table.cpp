@@ -7,9 +7,10 @@
 using namespace std;
 
 void createTable(const string& dbName, const string& tableName, const vector<string>& schema) {
-    string tablePath = dbName + "/" + tableName + ".csv";
+    string dbPath = "database/" + dbName;
+    string tablePath = dbPath + "/" + tableName + ".csv";
 
-    if (_access(dbName.c_str(), 0) != 0) {
+    if (_access(dbPath.c_str(), 0) != 0) {
         cout << "Database '" << dbName << "' does not exist." << endl;
         return;
     }
@@ -36,7 +37,9 @@ void createTable(const string& dbName, const string& tableName, const vector<str
 }
 
 void listTables(const string& dbName) {
-    if (_access(dbName.c_str(), 0) != 0) {
+    string dbPath = "database/" + dbName;
+
+    if (_access(dbPath.c_str(), 0) != 0) {
         cout << "Database '" << dbName << "' does not exist." << endl;
         return;
     }
@@ -44,7 +47,7 @@ void listTables(const string& dbName) {
     cout << "Tables in database '" << dbName << "':" << endl;
 
     struct _finddata_t fileEntry;
-    intptr_t handle = _findfirst((dbName + "/*.csv").c_str(), &fileEntry);
+    intptr_t handle = _findfirst((dbPath + "/*.csv").c_str(), &fileEntry);
 
     if (handle == -1) {
         cout << "No tables found." << endl;

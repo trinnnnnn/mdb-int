@@ -8,13 +8,14 @@
 using namespace std;
 
 void insertIntoTable(const string& dbName, const string& tableName, const vector<string>& values) {
-    string tablePath = dbName + "/" + tableName + ".csv";
+    string tablePath = "database/" + dbName + "/" + tableName + ".csv";
 
     if (_access(tablePath.c_str(), 0) != 0) {
         cout << "Table '" << tableName << "' does not exist in database '" << dbName << "'." << endl;
         return;
     }
 
+    // Open the table in append mode
     ofstream tableFile(tablePath, ios::app);
     if (tableFile.is_open()) {
         for (size_t i = 0; i < values.size(); ++i) {
@@ -32,7 +33,7 @@ void insertIntoTable(const string& dbName, const string& tableName, const vector
 }
 
 void viewTableCSV(const string& dbName, const string& tableName) {
-    string tablePath = dbName + "/" + tableName + ".csv";
+    string tablePath = "database/" + dbName + "/" + tableName + ".csv";
 
     if (_access(tablePath.c_str(), 0) != 0) {
         cout << "Table '" << tableName << "' does not exist in database '" << dbName << "'." << endl;

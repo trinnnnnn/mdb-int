@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 
-// Function declarations
-void insertIntoTable(const std::string& dbName, const std::string& tableName, const std::vector<std::string>& values);
-void viewTableCSV(const std::string& dbName, const std::string& tableName);
+using namespace std;
+
+void insertIntoTable(const string& dbName, const string& tableName, const vector<string>& values);
+void viewTableCSV(const string& dbName, const string& tableName);
 
 #endif
